@@ -178,7 +178,7 @@ class Section1:
         cv_dict['std_accuracy']=results['test_score'].std()
         
         answer["scores"] = cv_dict
-        answer["explain_kfold_vs_shuffle_split"] = 'Shuffle-Split compared to kfold offers more randomness in train/test splits can provide a better generalization error estimate, especially for datasets with uneven sample distribution'
+        answer["explain_kfold_vs_shuffle_split"] = 'When it comes to train/test splits, Shuffle-Split is more random than Kfold, which can lead to a more accurate estimation of the generalisation error, particularly for datasets with irregular sample distribution.'
         return answer
 
     # ----------------------------------------------------------------------
@@ -348,14 +348,14 @@ class Section1:
         cv=ShuffleSplit(n_splits=5,random_state=self.seed)
 
         clf_rf.fit(X,y)
-        # Predictions with the initial model
+        # We predict with the initial model
         y_train_pred_orig = clf_rf.predict(X)
         y_test_pred_orig = clf_rf.predict(Xtest)
 
         conf_matrix_train_orig = confusion_matrix(y, y_train_pred_orig)
         conf_matrix_test_orig = confusion_matrix(ytest, y_test_pred_orig)
 
-        # Accuracies
+        
         accuracy_train_orig = nu.conf_mat_accuracy(conf_matrix_train_orig)
         accuracy_test_orig = nu.conf_mat_accuracy(conf_matrix_test_orig)
         
@@ -372,14 +372,14 @@ class Section1:
 
         best_clf = grid_search.best_estimator_
 
-        # Predictions with the best model
+        # best model Predictions
         y_train_pred_bst = best_clf.predict(X)
         y_test_pred_bst = best_clf.predict(Xtest)
 
         conf_matrix_train_bst = confusion_matrix(y, y_train_pred_bst)
         conf_matrix_test_bst = confusion_matrix(ytest, y_test_pred_bst)
 
-        # Accuracies
+        
         accuracy_train_bst = nu.conf_mat_accuracy(conf_matrix_train_bst)
         accuracy_test_bst = nu.conf_mat_accuracy(conf_matrix_test_bst)
     
