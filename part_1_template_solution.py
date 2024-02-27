@@ -1,10 +1,4 @@
-# Inspired by GPT4
 
-# Information on type hints
-# https://peps.python.org/pep-0585/
-
-# GPT on testing functions, mock functions, testing number of calls, and argument values
-# https://chat.openai.com/share/b3fd7739-b691-48f2-bb5e-0d170be4428c
 
 
 from sklearn.ensemble import RandomForestClassifier
