@@ -20,15 +20,12 @@ from sklearn.model_selection import (
 )
 
 def scale_data(X):
-    #X = X.astype(float)
     X = (X - X.min()) / (X.max() - X.min())
     return X
 
 
 def conf_mat_accuracy(matrix):
-    """
-    Calculate accuracy from a confusion matrix.
-    """
+    
     TruePositive = matrix[1, 1]  
     TrueNegative = matrix[0, 0]  
     total_samples = matrix.sum()
@@ -76,16 +73,6 @@ def train_simple_classifier_with_cv(
     clf: BaseEstimator,
     cv: KFold = KFold,
 ):
-    """
-    Train a simple classifier using k-vold cross-validation.
-
-    Parameters:
-        - X: Features dataset.
-        - y: Labels.
-        - cv_class: The cross-validation class to use.
-        - estimator_class: The training classifier class to use.
-        - n_splits: Number of splits for cross-validation.
-        - print_results: Whether to print the results.
 
     Returns:
         - A dictionary with mean and std of accuracy and fit time.
