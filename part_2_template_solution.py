@@ -95,8 +95,7 @@ class Section2:
         answer["max_Xtrain"] = Xtrain.max()
         answer["max_Xtest"] = Xtest.max()
         
-        #Xtrain = Xtest = np.zeros([1, 1], dtype="float")
-        #ytrain = ytest = np.zeros([1], dtype="int")
+        
 
         return answer, Xtrain, ytrain, Xtest, ytest
 
