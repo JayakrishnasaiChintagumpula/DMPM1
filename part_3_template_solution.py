@@ -86,11 +86,11 @@ class Section3:
         clf = LogisticRegression(max_iter=300, random_state=self.seed)
         clf.fit(Xtrain, ytrain)
 
-        # Predict probabilities for training and test sets
+        # Prediction of Probabilities for test and training sets
         ytrain_pred = clf.predict_proba(Xtrain)
         ytest_pred = clf.predict_proba(Xtest)
 
-        # Calculate top-k accuracy scores
+        # Calculate accuracy scores for top-k
         topk = [k for k in range(1, 6)]
         tuple_plot_scores_test = []
         tuple_plot_scores_train = []
@@ -98,7 +98,7 @@ class Section3:
         for k in topk:
             topk_dict = {}
 
-            # Calculate top-k accuracy score for both training and test sets
+            # Calculating top-k accuracy score for training set and test sets
             scores_train = top_k_accuracy_score(ytrain, ytrain_pred, normalize=True, k=k)
             scores_test = top_k_accuracy_score(ytest, ytest_pred, normalize=True, k=k)
             topk_dict["score_train"] = scores_train
@@ -107,12 +107,12 @@ class Section3:
             tuple_plot_scores_test.append((k, scores_test))
             tuple_plot_scores_train.append((k, scores_train))
 
-        # Store the trained classifier in the answer dictionary
+        
         answer["clf"] = clf
         answer["plot_k_vs_score_train"] = tuple_plot_scores_train
         answer["plot_k_vs_score_test"] = tuple_plot_scores_test
-        answer["text_rate_accuracy_change"] = "The model consistently demonstrates positive improvements in accuracy as the value of k increases for the testing data, suggesting that the model becomes increasingly proficient in predicting the top-k classes"
-        answer["text_is_topk_useful_and_why"] = "The top-k accuracy metric is valuable for evaluating the model's performance as it assesses its capability to make accurate predictions across a broader spectrum of potential classes. This metric extends beyond conventional accuracy measures, providing a deeper understanding of the model's effectiveness in capturing relevant patterns."
+        answer["text_rate_accuracy_change"] = "As the value of k increases for the testing data, the model continuously shows positive improvements in accuracy, indicating that the model gets better at predicting the top-k classes."
+        answer["text_is_topk_useful_and_why"] = "When assessing the model's performance, the top-k accuracy metric is useful since it evaluates the model's ability to produce correct predictions over a wider range of possible classes. This metric goes beyond traditional measurements of accuracy and offers a more profound insight into how well the model captures pertinent patterns."
 
         """
         # `answer` is a dictionary with the following keys:
@@ -330,8 +330,8 @@ class Section3:
         answer['class_weights'] = class_weights
         answer['confusion_matrix_train'] = confusion_matrix_train_wt
         answer['confusion_matrix_test'] = confusion_matrix_test_wt
-        answer['explain_purpose_of_class_weights'] = "The class weights are used to address class imbalance by penalizing misclassifications of the minority class more heavily."
-        answer['explain_performance_difference'] = "The performance difference observed with class weights reflects the model's improved ability to generalize to the minority class, leading to more balanced performance metrics across all classes."
+        answer['explain_purpose_of_class_weights'] = "Class weights are used to penalise misclassifications of the minority class more severely, hence addressing the issue of class imbalance."
+        answer['explain_performance_difference'] = "The enhanced ability of the model to generalise to the minority class is reflected in the observed performance difference with class weights, which results in more balanced performance metrics across all classes."
 
         """
         Answer is a dictionary with the following keys: 
